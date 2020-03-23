@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/setting_label"
+                    android:text="Approximate Positon:"
+
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    >
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Latitude :"/>
+                    <TextView
+                        android:id="@+id/tv_appro_poxLat"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="X:"/>
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/tv_appro_poxX"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    >
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Longitude:"/>
+                    <TextView
+                        android:id="@+id/tv_appro_poxLong"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Y:"/>
+                    <TextView
+                        android:id="@+id/tv_appro_poxY"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    >
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:text="Height:"/>
+                    <TextView
+                        android:id="@+id/tv_appro_poxH"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Z:"/>
+                    <TextView
+                        android:id="@+id/tv_appro_poxZ"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/general_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    android:layout_marginBottom="6dp"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Rinex Version:"
+                        />
+                    <RadioGroup
+                        android:id="@+id/rg_select_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        >
+                        <RadioButton
+                            android:id="@+id/rg_select_version2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2.11"
+
+                            android:layout_weight="1"/>
+                        <RadioButton
+                            android:id="@+id/rg_select_version3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.03"
+                            android:layout_weight="1"/>
+                    </RadioGroup>
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Keep screen on while logging"
+                        />
+                    <CheckBox
+                        android:id="@+id/cb_screen_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="File Name:"
+                        />
+                    <TextView
+                        android:id="@+id/tv_filename"
+                        style="@style/setting_value"
+                        android:text="BTFY"
+                        android:maxLength="4"
+                        />
+
+                    <Button
+                        android:id="@+id/bt_filename"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        ></Button>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/observer_header_card"
+            android:layout_gravity="center"
+            android:layout_below="@+id/general_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="5dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Marker Name:"
+                        />
+                    <TextView
+                        android:id="@+id/tv_markername"
+                        style="@style/setting_value"
+                        android:text="Shgy"
+                        />
+                    <Button
+                        android:id="@+id/bt_markername"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Marker Number:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_markernumber"
+                        style="@style/setting_value"
+                        android:text="40461M001"
+                        />
+                    <Button
+                        android:id="@+id/bt_markernumber"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Observer Name:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_obsname"
+                        style="@style/setting_value"
+                        android:text="Ken Hudnut"
+                        />
+                    <Button
+                        android:id="@+id/bt_obsname"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Observer Agency Name:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_agencyname"
+                        style="@style/setting_value"
+                        android:text="BTF1.0"                    />
+                    <Button
+                        android:id="@+id/bt_agencyname"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Receiver Number:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_recnumber"
+                        style="@style/setting_value"
+                        android:text="618-01123"                    />
+                    <Button
+                        android:id="@+id/bt_recnumber"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Receiver Type:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_rectype"
+                        style="@style/setting_value"
+                        android:text="TPS NET-G3A"                    />
+                    <Button
+                        android:id="@+id/bt_rectype"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Receiver Version:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_recversion"
+                        style="@style/setting_value"
+                        android:text="MI 8 UD"                    />
+                    <Button
+                        android:id="@+id/bt_recversion"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Antenna Number:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_antname"
+                        style="@style/setting_value"
+                        android:text="383-1860"                    />
+                    <Button
+                        android:id="@+id/bt_antname"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Antenna Type:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_anttype"
+                        style="@style/setting_value"
+                        android:text="MI 8 UD"                    />
+                    <Button
+                        android:id="@+id/bt_anttype"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Antenna Delta H:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_antdeltaH"
+                        style="@style/setting_value"
+                        android:text="0.0000"                    />
+                    <Button
+                        android:id="@+id/bt_antdeltaH"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Antenna Delta E:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_antdeltaE"
+                        style="@style/setting_value"
+                        android:text="0.0000"                    />
+                    <Button
+                        android:id="@+id/bt_antdeltaE"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/setting_linelayout"
+                    >
+                    <TextView
+                        style="@style/setting_label"
+                        android:text="Antenna Delta N:"
+
+                        />
+                    <TextView
+                        android:id="@+id/tv_antdeltaN"
+                        style="@style/setting_value"
+                        android:text="0.0000"                    />
+                    <Button
+                        android:id="@+id/bt_antdeltaN"
+                        style="@style/setting_button"
+                        android:background="@drawable/botton_select"
+                        />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

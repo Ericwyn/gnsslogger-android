@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <tabs>
+        <tab
+            id="@+id/tab_monitor"
+            icon="@drawable/ic_monitor"
+            title="Monitor" />
+        <tab
+            id="@+id/tab_setting"
+            icon="@drawable/ic_setting"
+            title="Setting" />
+        <tab
+            id="@+id/tab_rinex"
+            icon="@drawable/ic_rinex"
+            title="Rinex" />
+        <tab
+            id="@+id/tab_help"
+            icon="@drawable/ic_help"
+            title="Help" />
+    </tabs>
+

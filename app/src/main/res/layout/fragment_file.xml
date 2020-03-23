@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:cardCornerRadius="7dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="请确保已设置Rinex版本（默认输出为3.03）!"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="若需要长时间观测，请确保勾选'保持屏幕常亮'!"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="请确保处于空旷地带，且GNSS信号较好!"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="7dp">
+                    <com.adam.gpsstatus.GpsStatusTextView
+                        android:id="@+id/gpsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="GNSS"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+
+                        android:gravity="center_vertical"
+                        app:colorClosed="@color/gps_icon_red"
+                        app:colorFixed="@color/gps_icon_green"
+                        app:colorUnFixed="@color/gps_icon_yellow"/>
+
+                    <com.adam.gpsstatus.GpsStatusImageView
+                        android:id="@+id/gpsImage"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="15dp"
+                        app:drawable0="@drawable/ic_gps_0_24dp"
+                        app:drawable1="@drawable/ic_gps_1_24dp"
+                        app:drawable2="@drawable/ic_gps_2_24dp"
+                        app:drawable3="@drawable/ic_gps_3_24dp"
+                        app:thr_1_2="4"
+                        app:thr_2_3="7" />
+                    <Chronometer
+                        android:id="@+id/timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:format="%s"
+                        android:textColor="@android:color/holo_orange_dark"
+                        android:textSize="30sp"
+                        android:layout_marginLeft="40dp"
+
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="7dp">
+
+                    <Button
+                        android:id="@+id/bt_start"
+                        android:text="Start"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_press"
+                        android:layout_weight="1"
+                        />
+
+
+                    <Button
+                        android:id="@+id/bt_end"
+                        android:text="End"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:background="@drawable/button_press"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:paddingRight="5dp"-->
+<!--            app:cardCornerRadius="7dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:layout_marginTop="10dp">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="7dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="导航文件见下："-->
+<!--                    android:gravity="center"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginTop="5dp"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingTop="5dp">-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_label"-->
+<!--                        android:text="File Name:"/>-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_value"-->
+<!--                        android:text="xxxx.yyN"/>-->
+<!--                    <Button-->
+<!--                        android:id="@+id/bt_openN"-->
+<!--                        android:text="Open"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:background="@drawable/button_press" />-->
+
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingTop="5dp">-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_label"-->
+<!--                        android:text="File Size:"/>-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_value"-->
+<!--                        android:text="xxxKB"/>-->
+<!--                    <Button-->
+<!--                        android:id="@+id/bt_shareN"-->
+<!--                        android:text="Share"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:background="@drawable/button_press" />-->
+
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingTop="5dp">-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_label"-->
+<!--                        android:text="File Time:"/>-->
+<!--                    <TextView-->
+<!--                        style="@style/setting_value"-->
+<!--                        android:text="yy-mm-dd hh:mm:ss"/>-->
+<!--                    <Button-->
+<!--                        android:id="@+id/bt_deleteN"-->
+<!--                        android:text="Delete"-->
+<!--                        android:textSize="14sp"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:background="@drawable/button_press" />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:cardCornerRadius="7dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="观测值文件导航信息文件见下:"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_file_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="3" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7dp">
+                        <Button
+                            android:id="@+id/bt_open"
+                            android:text="Open"
+
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:layout_width="100dp"
+                            android:layout_height="61dp"
+                            android:background="@drawable/button_press"
+                            android:layout_marginTop="10dp"
+                            />
+                        <Button
+                            android:id="@+id/bt_share"
+                            android:text="Share"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:layout_width="100dp"
+                            android:layout_height="61dp"
+                            android:background="@drawable/button_press"
+                            android:layout_marginTop="17dp"
+                            />
+                        <Button
+                            android:id="@+id/bt_delete"
+                            android:text="Delete"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:layout_width="100dp"
+                            android:layout_height="61dp"
+                            android:background="@drawable/button_press"
+                            android:layout_marginTop="17dp"
+                            />
+                        <Button
+                            android:id="@+id/bt_rename"
+                            android:text="Rename"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:layout_width="100dp"
+                            android:layout_height="61dp"
+                            android:background="@drawable/button_press"
+                            android:layout_marginTop="17dp"
+                            />
+
+
+
+                    </LinearLayout>
+            </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.core.widget.NestedScrollView>
