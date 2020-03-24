@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.gnssloggerbutterflying">
+    package="com.example.gnssloggerbtf">
 
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -34,7 +34,7 @@
         android:theme="@style/AppTheme">
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.gnssloggerbutterflying"
+            android:authorities="com.gnsslogger.butterflying.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -42,11 +42,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name="com.example.gnssloggerbutterflying.Settingfragments.FragmentD"></activity>
-        <activity android:name="com.example.gnssloggerbutterflying.RinexFilefragments.Fragment_File" />
-        <activity android:name="com.example.gnssloggerbutterflying.Settingfragments.Fragment_Setting" />
-        <activity android:name="com.example.gnssloggerbutterflying.GnssStatusfragment.Fragment_GnssStatus" />
-        <activity android:name="com.example.gnssloggerbutterflying.MainActivity">
+        <activity android:name="com.example.gnssloggerbtf.Settingfragments.FragmentD"></activity>
+        <activity android:name="com.example.gnssloggerbtf.RinexFilefragments.Fragment_File" />
+        <activity android:name="com.example.gnssloggerbtf.Settingfragments.Fragment_Setting" />
+        <activity android:name="com.example.gnssloggerbtf.GnssStatusfragment.Fragment_GnssStatus" />
+        <activity android:name="com.example.gnssloggerbtf.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
