@@ -7,6 +7,7 @@ public class RinexO_Header {
 
     private String FileName="BTFY",MarkerName="Shgy",MarkerNumber="40461M001",ObserverName="phone",ObsAgencyName="phone",RecNumber="618",RecType="phone",RecVersion="phone",AntType="phone",AntName="phone";
 
+    private String  Version="3.03";
 
     private String  approX="0.0000",approY="0.0000",approZ="0.0000";
 
