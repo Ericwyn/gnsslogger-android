@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -38,6 +39,9 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class MainActivity extends AppCompatActivity {
@@ -61,14 +65,13 @@ public class MainActivity extends AppCompatActivity {
     //定位相关
     private Location mLocation;
     private LocationManager mLocationManager;
+    private boolean isScreenON;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
 
         if (savedInstanceState != null) {
             // “内存重启”时调用
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             fragments.add(fragmentD);
             //showFragment();
         }
+        this.isScreenON=mFragmentSetting.getScreenOn();
         init();
         BottomBar bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new onTabSelect());
@@ -106,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
     /**
      * 在对sd卡进行读写操作之前调用这个方法 * Checks if the app has permission to write to device storage * If the app does not has permission then the user will be prompted to grant permissions
      */
@@ -118,29 +121,17 @@ public class MainActivity extends AppCompatActivity {
     }
     //初始化
     private void init() {
+
+        //sd卡权限获取
         verifyStoragePermissions(MainActivity.this);
+        //电量优化、用户白名单权限获取
         ignoreBatteryOptimization(MainActivity.this);
-//        if(Build.MANUFACTURER.equals("Xiaomi")) {
-//            Intent intent = new Intent();
-//            intent.setAction("miui.intent.action.OP_AUTO_START");
-//            intent.addCategory(Intent.CATEGORY_DEFAULT);
-//            startActivity(intent);
-//        }
 
-        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        //判断GNSS是否启动
-        assert mLocationManager != null;
-        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-            Toast.makeText(MainActivity.this, "请开启GNSS导航...", Toast.LENGTH_SHORT).show();
 
-            // 返回开启GPS导航设置界面
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            MainActivity.this.startActivityForResult(intent, 0);
-            return;
-        }
-        //看权限是否开启
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        //看GNSS权限是否开启
+        final  int REQUEST_ACCESS_FINE_LOCATION=2;
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -148,8 +139,20 @@ public class MainActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},REQUEST_ACCESS_FINE_LOCATION);
+        }
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //判断GNSS是否启动
+        assert mLocationManager != null;
+        if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            //Toast.makeText(MainActivity.this, "请开启GNSS导航...", Toast.LENGTH_SHORT).show();
+            // 返回开启GPS导航设置界面
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            MainActivity.this.startActivityForResult(intent, 0);
             return;
         }
+
 
         // 为获取地理位置信息时设置查询条件
         String bestProvider = mLocationManager.getBestProvider(getCriteria(), true);
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("haha", "onLocationChanged");
             mLocation = location;
             mFragmentGnssStatus.onLocationChanged(mLocation);
+            mFragmentSetting.onLocationChanged(mLocation);
             mFragment_file.onLocationChanged(mLocation);
 
         }
@@ -248,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFirstFix(int ttffMillis) {
-            //super.onFirstFix(ttffMillis);
             mFragmentGnssStatus.onGnssFirstFix(ttffMillis);
         }
 
@@ -348,7 +351,12 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
 
         if (currentFragment != mFragmentSetting && mFragmentSetting != null) {
-            Log.d("screen", String.valueOf(mFragmentSetting.getScreenOn()));
+            isScreenON=mFragmentSetting.getScreenOn();
+            if(isScreenON)
+            {
+                //保持屏幕常亮
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            }
         }
 
     }

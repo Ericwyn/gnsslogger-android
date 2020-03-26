@@ -5,13 +5,12 @@ package com.example.gnssloggerbtf.RinexFileLogger;
  */
 public class RinexO_Header {
 
-    private String FileName,MarkerName,MarkerNumber,ObserverName,ObsAgencyName,RecNumber,RecType,RecVersion,AntType,AntName;
+    private String FileName="BTFY",MarkerName="Shgy",MarkerNumber="40461M001",ObserverName="phone",ObsAgencyName="phone",RecNumber="618",RecType="phone",RecVersion="phone",AntType="phone",AntName="phone";
 
-    private String  Version;
 
-    private String  approX,approY,approZ;
+    private String  approX="0.0000",approY="0.0000",approZ="0.0000";
 
-    private String  AntDeltaH,AntDeltaN,AntDeltaE;
+    private String  AntDeltaH="0.0000",AntDeltaN="0.0000",AntDeltaE="0.0000";
 
     public void setFileName(String fileName) {
         FileName = fileName;
@@ -177,7 +176,7 @@ public class RinexO_Header {
 
         //添加APPROX POSITION XYZ,,, -2994427.7762  4951307.2376  2674497.9713                  APPROX POSITION XYZ
 
-        stringBuilder_header.append(String.format("%14s%14s%14s%18sAPPROX POSITION XYZ", this.getApproX(),this.getApproY(),this.approZ," "));
+        stringBuilder_header.append(String.format("%14s%14s%14s%18sAPPROX POSITION XYZ", this.getApproX(),this.getApproY(),this.getApproZ()," "));
 
         stringBuilder_header.append('\n');
 

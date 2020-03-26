@@ -6,9 +6,11 @@ import android.location.GnssMeasurementsEvent;
 import android.location.GnssStatus;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -53,7 +55,7 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
     private RinexO_Header mRinexO_header;
 
     private void updateFragmentSetting() {
-        mRinexO_header = new RinexO_Header();
+
         if (mtv_AntDeltaE.getText() != null)
             mRinexO_header.setAntDeltaE( mtv_AntDeltaE.getText().toString());
         if (mtv_AntDeltaH.getText() != null)
@@ -95,7 +97,6 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
         if (mtv_RecVersion.getText() != null)
             mRinexO_header.setRecVersion( mtv_RecVersion.getText().toString());
 
-
     }
 
     public RinexO_Header getRinexO_Header() {
@@ -115,6 +116,8 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
         View v = inflater.inflate(R.layout.fragment_setting, container, false);
 
 
+
+        mRinexO_header = new RinexO_Header();
         /*
         第一个卡片
          */
@@ -194,7 +197,10 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
         mtv_approLong.setText(String.valueOf(lon));
 
         mtv_approHeight.setText(String.valueOf(height));
+
+
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -252,8 +258,39 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
 
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onLocationChanged(Location location) {
+
+
+        if(location!=null)
+        {
+            try {
+                mtv_approLat.setText(String.format("%.6f",location.getLatitude()));
+
+                mtv_approLong.setText(String.format("%.6f",location.getLongitude()));
+
+                if(location.hasAltitude())
+                {
+                    mtv_approHeight.setText(String.format("%.6f",location.getAltitude()));
+                }
+                //坐标转换
+                double[] xyz =Coordinate.WGS84LLAtoXYZ(location.getLatitude(), location.getLongitude(), location.getAltitude());
+
+                mtv_approX.setText(String.format("%.4f",xyz[0]));
+                mtv_approY.setText(String.format("%.4f",xyz[1]));
+                mtv_approZ.setText(String.format("%.4f",xyz[2]));
+                updateFragmentSetting();
+            }
+            catch (Exception e)
+            {
+                Log.d(TAG, "避免出现Location不为空值，但纬度经度为空值的情况");
+            }
+
+        }
+
+
+
     }
 
     @Override
@@ -559,10 +596,10 @@ public class Fragment_Setting extends Fragment implements GnssLocationListener {
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (isChecked) {
                 isScreenOn = true;
+
             } else {
                 isScreenOn = false;
             }
-
         }
     }
 }

@@ -127,7 +127,6 @@ public class Fragment_GnssStatus extends Fragment implements GnssLocationListene
 
         mLatitudeView.setText(String.valueOf(String.format("%.7f", mLocation.getLatitude())) + "°");
         mLongitudeView.setText(String.valueOf(String.format("%.7f", mLocation.getLongitude())) + "°");
-        Log.d(TAG, mLocation.getLatitude() + "du");
 
         if (location.hasAltitude()) {
             mAltitudeView.setText(String.valueOf(String.format("%.2f", mLocation.getAltitude())) + "m");
@@ -173,7 +172,9 @@ public class Fragment_GnssStatus extends Fragment implements GnssLocationListene
         }
         updateFixTime();
 
-        updateFragmentSetting();
+        //updateFragmentSetting();
+
+
 
 
     }
